@@ -16,7 +16,7 @@ const Sun = (props) => {
     useFrame(() => (ref.current.rotation.y += 0.002));
 
     const [selectSun, setSelectSun] = useState(false);
-
+    
     useFrame((state, delta) => {
         const step = defaultCamera.step;
 
