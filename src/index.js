@@ -5,13 +5,18 @@ import { OrbitControls, Stars } from '@react-three/drei';
 
 import './styles.css';
 
+import Sun from './planets/Sun';
+import Mercury from './planets/Mercury';
+import Venus from './planets/Venus';
+import Earth from './planets/Earth';
+import Mars from './planets/Mars';
 import Jupiter from './planets/Jupiter';
 import Saturn from './planets/Saturn';
 import Uranus from './planets/Uranus';
 import Neptune from './planets/Neptune';
 import Pluto from './planets/Pluto';
 
-const gap = 4;
+const gap = 3;
 
 ReactDOM.render(
     <Canvas>
@@ -29,11 +34,16 @@ ReactDOM.render(
         {/* <gridHelper /> */}
 
         <Suspense fallback={null}>
-            <Jupiter position={[gap, 0, -gap]}/>
-            <Saturn position={[0, 0, 0]}/>
-            <Uranus position={[-gap, 0, gap]} />
+            {/* <Sun position={[6*gap, 0, -6*gap]} /> */}
+            <Mercury position={[5*gap, 0, -5*gap]} />
+            {/* <Venus position={[4*gap, 0, -4*gap]} /> */}
+            <Earth position={[3*gap, 0, -3*gap]} />
+            <Mars position={[2*gap, 0, -2*gap]} />
+            <Jupiter position={[gap, 0, -gap]} />
+           {/*  <Saturn position={[0, 0, 0]} />
+            <Uranus position={[-gap, 0, gap]} /> */}
             <Neptune position={[-2*gap, 0, 2*gap]} />
-            <Pluto position={[-3*gap, 0, 3*gap]} />
+            {/* <Pluto position={[-3*gap, 0, 3*gap]} /> */}
         </Suspense>
     </Canvas>,
     document.getElementById('root')

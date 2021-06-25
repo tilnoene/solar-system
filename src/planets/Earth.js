@@ -8,48 +8,56 @@ import defaultCamera from '../defaultCamera';
 import Typewriter from 'typewriter-effect';
 import Title from '../components/Title';
 
-const Neptune = (props) => {
+const Earth = (props) => {
     const dummy = new THREE.Vector3();
     const lookAtPos = new THREE.Vector3();
     const ref = useRef();
-    // rotate
-    useFrame(() => (ref.current.rotation.y += 0.01));
+    const night = false;
 
-    const [selectNeptune, setSelectNeptune] = useState(false);
-    
+    // rotate
+    useFrame(() => (ref.current.rotation.y += 0.002));
+
+    const [selectEarth, setSelectEarth] = useState(false);
+
     useFrame((state, delta) => {
         const step = 0.1;
 
-        state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectNeptune ? 6 : defaultCamera.fov, step);
-        state.camera.position.lerp(dummy.set(selectNeptune ? 25 : defaultCamera.position.z, selectNeptune ? 1 : defaultCamera.position.z, selectNeptune ? 0 : defaultCamera.position.z), step);
+        state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectEarth ? 45 : defaultCamera.fov, step);
+        state.camera.position.lerp(dummy.set(selectEarth ? 25 : defaultCamera.position.z, selectEarth ? 1 : defaultCamera.position.z, selectEarth ? 0 : defaultCamera.position.z), step);
         
-        state.camera.filmOffset = THREE.MathUtils.lerp(state.camera.filmOffset, selectNeptune ? -5 : 0, step);
+        state.camera.filmOffset = THREE.MathUtils.lerp(state.camera.filmOffset, selectEarth ? 400 : 0, step);
 
         lookAtPos.x = 0;
-        //lookAtPos.z = selectNeptune ? -2 : 0;
+        //lookAtPos.z = selectEarth ? -2 : 0;
 
         state.camera.lookAt(lookAtPos);
         state.camera.updateProjectionMatrix();
     });
 
-    const textureNeptune = useLoader(
+    const textureEarthDay = useLoader(
         THREE.TextureLoader,
-        '/textures/neptune_texture.jpg'
+        '/textures/earth_texture_day.jpg'
+    );
+
+    const textureEarthNight = useLoader(
+        THREE.TextureLoader,
+        '/textures/earth_texture_night.jpg'
     );
 
     return (
         <mesh
             {...props}
             ref={ref}
-            onClick={(e) => setSelectNeptune(!selectNeptune)}
+            onClick={(e) => setSelectEarth(!selectEarth)}
         >
-            <Sphere args={[1, 200, 200]}>
+            <Sphere args={[1, 200, 200]} scale={0.8}>
                 <meshStandardMaterial 
-                    map={textureNeptune}
+                    attach='material'
+                    map={night ? textureEarthNight : textureEarthDay}
                 />
             </Sphere>
 
-            {selectNeptune && 
+            {selectEarth && 
                 <Html
                     as='div'
                     distanceFactor={12}
@@ -63,7 +71,7 @@ const Neptune = (props) => {
                         <Title>
                             <Typewriter
                                 options={{
-                                    strings: ['Netuno'],
+                                    strings: ['Júpiter'],
                                     autoStart: true,
                                     loop: true,
                                 }}
@@ -75,4 +83,4 @@ const Neptune = (props) => {
     );
 }
 
-export default Neptune;
+export default Earth;

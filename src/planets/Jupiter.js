@@ -3,6 +3,8 @@ import { useFrame, useLoader } from '@react-three/fiber';
 import { Sphere, Html } from '@react-three/drei';
 import * as THREE from 'three'
 
+import defaultCamera from '../defaultCamera';
+
 import Typewriter from 'typewriter-effect';
 import Title from '../components/Title';
 
@@ -11,15 +13,15 @@ const Jupiter = (props) => {
     const lookAtPos = new THREE.Vector3();
     const ref = useRef();
     // rotate
-    useFrame(() => (ref.current.rotation.y += 0.01));
+    useFrame(() => (ref.current.rotation.y += 0.002));
 
     const [selectJupiter, setSelectJupiter] = useState(false);
 
     useFrame((state, delta) => {
         const step = 0.1;
 
-        state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectJupiter ? 6 : 80, step);
-        state.camera.position.lerp(dummy.set(selectJupiter ? 25 : 10, selectJupiter ? 1 : 5, selectJupiter ? 0 : 10), step);
+        state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectJupiter ? 45 : defaultCamera.fov, step);
+        state.camera.position.lerp(dummy.set(selectJupiter ? 25 : defaultCamera.position.x, selectJupiter ? 1 : defaultCamera.position.y, selectJupiter ? 0 : defaultCamera.position.z), step);
         
         state.camera.filmOffset = THREE.MathUtils.lerp(state.camera.filmOffset, selectJupiter ? -5 : 0, step);
 
@@ -30,7 +32,7 @@ const Jupiter = (props) => {
         state.camera.updateProjectionMatrix();
     });
 
-    const jupiterTexture = useLoader(
+    const textureJupiter = useLoader(
         THREE.TextureLoader,
         '/textures/jupiter_texture.jpg'
     );
@@ -44,7 +46,7 @@ const Jupiter = (props) => {
             <Sphere args={[1, 200, 200]} scale={1.2}>
                 <meshStandardMaterial 
                     attach='material'
-                    map={jupiterTexture}
+                    map={textureJupiter}
                 />
             </Sphere>
 

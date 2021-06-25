@@ -3,53 +3,51 @@ import { useFrame, useLoader } from '@react-three/fiber';
 import { Sphere, Html } from '@react-three/drei';
 import * as THREE from 'three'
 
-import defaultCamera from '../defaultCamera';
-
 import Typewriter from 'typewriter-effect';
 import Title from '../components/Title';
 
-const Neptune = (props) => {
+const Venus = (props) => {
     const dummy = new THREE.Vector3();
     const lookAtPos = new THREE.Vector3();
     const ref = useRef();
     // rotate
     useFrame(() => (ref.current.rotation.y += 0.01));
 
-    const [selectNeptune, setSelectNeptune] = useState(false);
+    const [selectVenus, setSelectVenus] = useState(false);
     
     useFrame((state, delta) => {
         const step = 0.1;
 
-        state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectNeptune ? 6 : defaultCamera.fov, step);
-        state.camera.position.lerp(dummy.set(selectNeptune ? 25 : defaultCamera.position.z, selectNeptune ? 1 : defaultCamera.position.z, selectNeptune ? 0 : defaultCamera.position.z), step);
+        state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectVenus ? 6 : 80, step);
+        state.camera.position.lerp(dummy.set(selectVenus ? 25 : 10, selectVenus ? 1 : 5, selectVenus ? 0 : 10), step);
         
-        state.camera.filmOffset = THREE.MathUtils.lerp(state.camera.filmOffset, selectNeptune ? -5 : 0, step);
+        state.camera.filmOffset = THREE.MathUtils.lerp(state.camera.filmOffset, selectVenus ? -5 : 0, step);
 
         lookAtPos.x = 0;
-        //lookAtPos.z = selectNeptune ? -2 : 0;
+        //lookAtPos.z = selectVenus ? -2 : 0;
 
         state.camera.lookAt(lookAtPos);
         state.camera.updateProjectionMatrix();
     });
 
-    const textureNeptune = useLoader(
+    const textureVenus = useLoader(
         THREE.TextureLoader,
-        '/textures/neptune_texture.jpg'
+        '/textures/venus_texture.jpg'
     );
 
     return (
         <mesh
             {...props}
             ref={ref}
-            onClick={(e) => setSelectNeptune(!selectNeptune)}
+            onClick={(e) => setSelectVenus(!selectVenus)}
         >
-            <Sphere args={[1, 200, 200]}>
+            <Sphere args={[1, 200, 200]} scale={0.6} >
                 <meshStandardMaterial 
-                    map={textureNeptune}
+                    map={textureVenus}
                 />
             </Sphere>
 
-            {selectNeptune && 
+            {selectVenus && 
                 <Html
                     as='div'
                     distanceFactor={12}
@@ -75,4 +73,4 @@ const Neptune = (props) => {
     );
 }
 
-export default Neptune;
+export default Venus;
