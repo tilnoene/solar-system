@@ -19,6 +19,7 @@ const Pluto = (props) => {
 
     useFrame((state, delta) => {
         const step = defaultCamera.step;
+        if (selectPluto) {
 
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectPluto ? 6 : 100, step);
         state.camera.position.lerp(dummy.set(selectPluto ? 25 : 10, selectPluto ? 1 : 5, selectPluto ? 0 : 10), step);
@@ -29,6 +30,7 @@ const Pluto = (props) => {
 
         state.camera.lookAt(lookAtPos);
         state.camera.updateProjectionMatrix();
+        }
     });
 
     const texturePluto = useLoader(

@@ -19,7 +19,7 @@ const Uranus = (props) => {
 
     useFrame((state, delta) => {
         const step = defaultCamera.step;
-
+        if (selectUranus) {
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectUranus ? 6 : 100, step);
         state.camera.position.lerp(dummy.set(selectUranus ? 25 : 10, selectUranus ? 1 : 5, selectUranus ? 0 : 10), step);
         
@@ -30,6 +30,7 @@ const Uranus = (props) => {
 
         state.camera.lookAt(lookAtPos);
         state.camera.updateProjectionMatrix();
+        }
     });
 
     const textureUranus = useLoader(

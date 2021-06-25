@@ -19,6 +19,7 @@ const Venus = (props) => {
     
     useFrame((state, delta) => {
         const step = defaultCamera.step;
+        if (selectVenus) {
 
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectVenus ? 6 : 80, step);
         state.camera.position.lerp(dummy.set(selectVenus ? 25 : 10, selectVenus ? 1 : 5, selectVenus ? 0 : 10), step);
@@ -30,6 +31,7 @@ const Venus = (props) => {
 
         state.camera.lookAt(lookAtPos);
         state.camera.updateProjectionMatrix();
+        }
     });
 
     const textureVenus = useLoader(

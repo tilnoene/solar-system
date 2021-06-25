@@ -21,6 +21,7 @@ const Earth = (props) => {
 
     useFrame((state, delta) => {
         const step = defaultCamera.step;
+        if (selectEarth) {
 
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectEarth ? 45 : defaultCamera.fov, step);
         state.camera.position.lerp(dummy.set(selectEarth ? 25 : defaultCamera.position.z, selectEarth ? 1 : defaultCamera.position.z, selectEarth ? 0 : defaultCamera.position.z), step);
@@ -32,6 +33,7 @@ const Earth = (props) => {
 
         state.camera.lookAt(lookAtPos);
         state.camera.updateProjectionMatrix();
+        }
     });
 
     const textureEarthDay = useLoader(

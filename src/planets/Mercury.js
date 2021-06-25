@@ -19,7 +19,7 @@ const Mercury = (props) => {
     
     useFrame((state, delta) => {
         const step = defaultCamera.step;
-
+        if (selectMercury) {
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectMercury ? 6 : defaultCamera.fov, step);
         state.camera.position.lerp(dummy.set(selectMercury ? 25 : defaultCamera.position.z, selectMercury ? 1 : defaultCamera.position.z, selectMercury ? 0 : defaultCamera.position.z), step);
         
@@ -30,6 +30,7 @@ const Mercury = (props) => {
 
         state.camera.lookAt(lookAtPos);
         state.camera.updateProjectionMatrix();
+        }
     });
 
     const textureMercury = useLoader(

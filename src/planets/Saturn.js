@@ -19,7 +19,7 @@ const Saturn = () => {
 
     useFrame((state, delta) => {
         const step = defaultCamera.step;
-
+        if (selectSaturn) {
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectSaturn ? 6 : 42, step);
         state.camera.position.lerp(dummy.set(selectSaturn ? 25 : 10, selectSaturn ? 1 : 5, selectSaturn ? 0 : 10), step);
         
@@ -29,7 +29,7 @@ const Saturn = () => {
         //lookAtPos.z = selectSaturn ? -2 : 0;
 
         state.camera.lookAt(lookAtPos);
-        state.camera.updateProjectionMatrix();
+        state.camera.updateProjectionMatrix();}
     });
 
     const textureSaturn = useLoader(

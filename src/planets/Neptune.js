@@ -19,7 +19,7 @@ const Neptune = (props) => {
     
     useFrame((state, delta) => {
         const step = defaultCamera.step;
-
+        if (selectNeptune) {
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectNeptune ? -360 : defaultCamera.fov, step);
         state.camera.position.lerp(dummy.set(selectNeptune ? 25 : defaultCamera.position.z, selectNeptune ? 1 : defaultCamera.position.z, selectNeptune ? 25 : defaultCamera.position.z), step);
         
@@ -30,6 +30,7 @@ const Neptune = (props) => {
 
         state.camera.lookAt(lookAtPos);
         state.camera.updateProjectionMatrix();
+        }
     });
 
     const textureNeptune = useLoader(

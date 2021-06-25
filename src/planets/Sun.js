@@ -19,7 +19,8 @@ const Sun = (props) => {
     
     useFrame((state, delta) => {
         const step = defaultCamera.step;
-
+        
+        if (selectSun) {
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectSun ? 6 : 45, step);
         state.camera.position.lerp(dummy.set(selectSun ? 25 : 10, selectSun ? 1 : 5, selectSun ? 0 : 10), step);
         
@@ -30,6 +31,7 @@ const Sun = (props) => {
 
         state.camera.lookAt(lookAtPos);
         state.camera.updateProjectionMatrix();
+        }
     });
 
     const textureSun = useLoader(

@@ -21,7 +21,7 @@ const gap = 3;
 ReactDOM.render(
     <Canvas>
         <OrbitControls 
-            enablePan={false} 
+            enablePan={true} 
             enableRotate={true} 
             autoRotate={false} 
         />
