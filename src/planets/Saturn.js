@@ -3,6 +3,8 @@ import { useFrame, useLoader } from '@react-three/fiber';
 import { Sphere, Ring, Html } from '@react-three/drei';
 import * as THREE from 'three'
 
+import defaultCamera from '../defaultCamera';
+
 import Typewriter from 'typewriter-effect';
 import Title from '../components/Title';
 
@@ -16,7 +18,7 @@ const Saturn = () => {
     const [selectSaturn, setSelectSaturn] = useState(false);
 
     useFrame((state, delta) => {
-        const step = 0.1;
+        const step = defaultCamera.step;
 
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectSaturn ? 6 : 42, step);
         state.camera.position.lerp(dummy.set(selectSaturn ? 25 : 10, selectSaturn ? 1 : 5, selectSaturn ? 0 : 10), step);

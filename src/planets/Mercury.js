@@ -18,7 +18,7 @@ const Mercury = (props) => {
     const [selectMercury, setSelectMercury] = useState(false);
     
     useFrame((state, delta) => {
-        const step = 0.1;
+        const step = defaultCamera.step;
 
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectMercury ? 6 : defaultCamera.fov, step);
         state.camera.position.lerp(dummy.set(selectMercury ? 25 : defaultCamera.position.z, selectMercury ? 1 : defaultCamera.position.z, selectMercury ? 0 : defaultCamera.position.z), step);

@@ -18,12 +18,12 @@ const Neptune = (props) => {
     const [selectNeptune, setSelectNeptune] = useState(false);
     
     useFrame((state, delta) => {
-        const step = 0.1;
+        const step = defaultCamera.step;
 
-        state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectNeptune ? 6 : defaultCamera.fov, step);
-        state.camera.position.lerp(dummy.set(selectNeptune ? 25 : defaultCamera.position.z, selectNeptune ? 1 : defaultCamera.position.z, selectNeptune ? 0 : defaultCamera.position.z), step);
+        state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectNeptune ? -360 : defaultCamera.fov, step);
+        state.camera.position.lerp(dummy.set(selectNeptune ? 25 : defaultCamera.position.z, selectNeptune ? 1 : defaultCamera.position.z, selectNeptune ? 25 : defaultCamera.position.z), step);
         
-        state.camera.filmOffset = THREE.MathUtils.lerp(state.camera.filmOffset, selectNeptune ? -5 : 0, step);
+        state.camera.filmOffset = THREE.MathUtils.lerp(state.camera.filmOffset, selectNeptune ? -120 : 0, step);
 
         lookAtPos.x = 0;
         //lookAtPos.z = selectNeptune ? -2 : 0;
@@ -63,7 +63,7 @@ const Neptune = (props) => {
                         <Title>
                             <Typewriter
                                 options={{
-                                    strings: ['Netuno'],
+                                    strings: ['Netuno', 'matue está aqui'],
                                     autoStart: true,
                                     loop: true,
                                 }}

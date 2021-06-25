@@ -20,7 +20,7 @@ const Earth = (props) => {
     const [selectEarth, setSelectEarth] = useState(false);
 
     useFrame((state, delta) => {
-        const step = 0.1;
+        const step = defaultCamera.step;
 
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectEarth ? 45 : defaultCamera.fov, step);
         state.camera.position.lerp(dummy.set(selectEarth ? 25 : defaultCamera.position.z, selectEarth ? 1 : defaultCamera.position.z, selectEarth ? 0 : defaultCamera.position.z), step);

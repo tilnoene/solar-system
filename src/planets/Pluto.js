@@ -3,6 +3,8 @@ import { useFrame, useLoader } from '@react-three/fiber';
 import { Sphere, Html } from '@react-three/drei';
 import * as THREE from 'three'
 
+import defaultCamera from '../defaultCamera';
+
 import Typewriter from 'typewriter-effect';
 import Title from '../components/Title';
 
@@ -16,7 +18,7 @@ const Pluto = (props) => {
     const [selectPluto, setSelectPluto] = useState(false);
 
     useFrame((state, delta) => {
-        const step = 0.1;
+        const step = defaultCamera.step;
 
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectPluto ? 6 : 100, step);
         state.camera.position.lerp(dummy.set(selectPluto ? 25 : 10, selectPluto ? 1 : 5, selectPluto ? 0 : 10), step);

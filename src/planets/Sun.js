@@ -3,6 +3,8 @@ import { useFrame, useLoader } from '@react-three/fiber';
 import { Sphere, Html } from '@react-three/drei';
 import * as THREE from 'three'
 
+import defaultCamera from '../defaultCamera';
+
 import Typewriter from 'typewriter-effect';
 import Title from '../components/Title';
 
@@ -16,7 +18,7 @@ const Sun = (props) => {
     const [selectSun, setSelectSun] = useState(false);
 
     useFrame((state, delta) => {
-        const step = 0.1;
+        const step = defaultCamera.step;
 
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectSun ? 6 : 45, step);
         state.camera.position.lerp(dummy.set(selectSun ? 25 : 10, selectSun ? 1 : 5, selectSun ? 0 : 10), step);

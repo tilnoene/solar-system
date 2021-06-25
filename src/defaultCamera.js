@@ -1,4 +1,5 @@
 const defaultCamera = {
+    step: 0.1,
     fov: 45,
     position: {
         x: 10,

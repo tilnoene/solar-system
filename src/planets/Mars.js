@@ -18,7 +18,7 @@ const Mars = (props) => {
     const [selectMars, setSelectMars] = useState(false);
 
     useFrame((state, delta) => {
-        const step = 0.1;
+        const step = defaultCamera.step;
 
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectMars ? 6 : defaultCamera.fov, step);
         state.camera.position.lerp(dummy.set(selectMars ? 25 : defaultCamera.position.z, selectMars ? 1 : defaultCamera.position.z, selectMars ? 0 : defaultCamera.position.z), step);

@@ -18,7 +18,7 @@ const Jupiter = (props) => {
     const [selectJupiter, setSelectJupiter] = useState(false);
 
     useFrame((state, delta) => {
-        const step = 0.1;
+        const step = defaultCamera.step;
 
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectJupiter ? 45 : defaultCamera.fov, step);
         state.camera.position.lerp(dummy.set(selectJupiter ? 25 : defaultCamera.position.x, selectJupiter ? 1 : defaultCamera.position.y, selectJupiter ? 0 : defaultCamera.position.z), step);

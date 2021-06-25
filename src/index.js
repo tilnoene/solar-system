@@ -34,16 +34,16 @@ ReactDOM.render(
         {/* <gridHelper /> */}
 
         <Suspense fallback={null}>
-            {/* <Sun position={[6*gap, 0, -6*gap]} /> */}
-            <Mercury position={[5*gap, 0, -5*gap]} />
-            {/* <Venus position={[4*gap, 0, -4*gap]} /> */}
-            <Earth position={[3*gap, 0, -3*gap]} />
-            <Mars position={[2*gap, 0, -2*gap]} />
+            <Sun position={[3.8*gap, 0, -3.8*gap]} />
+            <Mercury position={[3*gap, 0, -3*gap]} />
+            <Venus position={[2.4*gap, 0, -2.4*gap]} />
+            <Earth position={[1.8*gap, 0, -1.8*gap]} />
+            <Mars position={[1*gap, 0, -1*gap]} />
             <Jupiter position={[gap, 0, -gap]} />
-           {/*  <Saturn position={[0, 0, 0]} />
-            <Uranus position={[-gap, 0, gap]} /> */}
-            <Neptune position={[-2*gap, 0, 2*gap]} />
-            {/* <Pluto position={[-3*gap, 0, 3*gap]} /> */}
+            <Saturn position={[0, 0, 0]} />
+            <Uranus position={[-gap, 0, gap]} />
+            <Neptune position={[-2.3*gap, 0, 2.3*gap]} />
+            <Pluto position={[-3*gap, 0, 3*gap]} />
         </Suspense>
     </Canvas>,
     document.getElementById('root')
