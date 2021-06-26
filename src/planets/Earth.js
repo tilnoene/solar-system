@@ -1,40 +1,15 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { Sphere, Html } from '@react-three/drei';
 import * as THREE from 'three'
 
-import defaultCamera from '../defaultCamera';
-
 import Typewriter from 'typewriter-effect';
 import Title from '../components/Title';
 
-const Earth = (props) => {
-    const dummy = new THREE.Vector3();
-    const lookAtPos = new THREE.Vector3();
+const Earth = ({ position, select, setSelect, night=false }) => {
     const ref = useRef();
-    const night = false;
 
-    // rotate
     useFrame(() => (ref.current.rotation.y += 0.002));
-
-    const [selectEarth, setSelectEarth] = useState(false);
-
-    useFrame((state, delta) => {
-        const step = defaultCamera.step;
-        if (selectEarth) {
-
-        state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectEarth ? 45 : defaultCamera.fov, step);
-        state.camera.position.lerp(dummy.set(selectEarth ? 25 : defaultCamera.position.z, selectEarth ? 1 : defaultCamera.position.z, selectEarth ? 0 : defaultCamera.position.z), step);
-        
-        state.camera.filmOffset = THREE.MathUtils.lerp(state.camera.filmOffset, selectEarth ? 400 : 0, step);
-
-        lookAtPos.x = 0;
-        //lookAtPos.z = selectEarth ? -2 : 0;
-
-        state.camera.lookAt(lookAtPos);
-        state.camera.updateProjectionMatrix();
-        }
-    });
 
     const textureEarthDay = useLoader(
         THREE.TextureLoader,
@@ -48,9 +23,9 @@ const Earth = (props) => {
 
     return (
         <mesh
-            {...props}
             ref={ref}
-            onClick={(e) => setSelectEarth(!selectEarth)}
+            position={position}
+            onClick={(e) => setSelect(!select)}
         >
             <Sphere args={[1, 200, 200]} scale={0.8}>
                 <meshStandardMaterial 
@@ -59,7 +34,7 @@ const Earth = (props) => {
                 />
             </Sphere>
 
-            {selectEarth && 
+            {select && 
                 <Html
                     as='div'
                     distanceFactor={12}

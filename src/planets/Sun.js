@@ -1,38 +1,15 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { Sphere, Html } from '@react-three/drei';
 import * as THREE from 'three'
 
-import defaultCamera from '../defaultCamera';
-
 import Typewriter from 'typewriter-effect';
 import Title from '../components/Title';
 
-const Sun = (props) => {
-    const dummy = new THREE.Vector3();
-    const lookAtPos = new THREE.Vector3();
+const Sun = ({ position, select, setSelect }) => {
     const ref = useRef();
-    // rotate
+
     useFrame(() => (ref.current.rotation.y += 0.002));
-
-    const [selectSun, setSelectSun] = useState(false);
-    
-    useFrame((state, delta) => {
-        const step = defaultCamera.step;
-        
-        if (selectSun) {
-        state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectSun ? 6 : 45, step);
-        state.camera.position.lerp(dummy.set(selectSun ? 25 : 10, selectSun ? 1 : 5, selectSun ? 0 : 10), step);
-        
-        state.camera.filmOffset = THREE.MathUtils.lerp(state.camera.filmOffset, selectSun ? -5 : 0, step);
-
-        lookAtPos.x = 0;
-        //lookAtPos.z = selectSun ? -2 : 0;
-
-        state.camera.lookAt(lookAtPos);
-        state.camera.updateProjectionMatrix();
-        }
-    });
 
     const textureSun = useLoader(
         THREE.TextureLoader,
@@ -41,9 +18,9 @@ const Sun = (props) => {
 
     return (
         <mesh
-            {...props}
             ref={ref}
-            onClick={(e) => setSelectSun(!selectSun)}
+            position={position}
+            onClick={(e) => setSelect(!select)}
         >
             <Sphere args={[1, 200, 200]} scale={1.2}>
                 <meshStandardMaterial 
@@ -52,7 +29,7 @@ const Sun = (props) => {
                 />
             </Sphere>
 
-            {selectSun && 
+            {select && 
                 <Html
                     as='div'
                     distanceFactor={12}

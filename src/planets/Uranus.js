@@ -1,37 +1,15 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { Sphere, Ring, Html } from '@react-three/drei';
 import * as THREE from 'three'
 
-import defaultCamera from '../defaultCamera';
-
 import Typewriter from 'typewriter-effect';
 import Title from '../components/Title';
 
-const Uranus = (props) => {
-    const dummy = new THREE.Vector3();
-    const lookAtPos = new THREE.Vector3();
+const Uranus = ({ position, select, setSelect }) => {
     const ref = useRef();
-    // rotate
+
     useFrame(() => (ref.current.rotation.y += 0.01));
-
-    const [selectUranus, setSelectUranus] = useState(false);
-
-    useFrame((state, delta) => {
-        const step = defaultCamera.step;
-        if (selectUranus) {
-        state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, selectUranus ? 6 : 100, step);
-        state.camera.position.lerp(dummy.set(selectUranus ? 25 : 10, selectUranus ? 1 : 5, selectUranus ? 0 : 10), step);
-        
-        state.camera.filmOffset = THREE.MathUtils.lerp(state.camera.filmOffset, selectUranus ? -5 : 0, step);
-
-        lookAtPos.x = 0;
-        //lookAtPos.z = selectUranus ? -2 : 0;
-
-        state.camera.lookAt(lookAtPos);
-        state.camera.updateProjectionMatrix();
-        }
-    });
 
     const textureUranus = useLoader(
         THREE.TextureLoader,
@@ -40,9 +18,9 @@ const Uranus = (props) => {
 
     return (
         <mesh
-            {...props}
             ref={ref}
-            onClick={(e) => setSelectUranus(!selectUranus)}
+            position={position}
+            onClick={(e) => setSelect(!select)}
         >
             <Sphere args={[1, 200, 200]}>
                 <meshStandardMaterial 
@@ -53,7 +31,7 @@ const Uranus = (props) => {
                 <meshStandardMaterial attach='material' color='#83a5eb' side={THREE.DoubleSide} />
             </Ring>
 
-            {selectUranus && 
+            {select && 
             <Html
                 as='div'
                 distanceFactor={12}
