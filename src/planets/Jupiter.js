@@ -29,6 +29,18 @@ const Jupiter = ({ position, select, setSelect }) => {
                 />
             </Sphere>
 
+            <Html distanceFactor={10}>
+                <Title translateY='14vh'>
+                    <Typewriter
+                        options={{
+                            strings: ['React', 'Júpiter'],
+                            autoStart: true,
+                            loop: true,
+                        }}
+                    />
+                </Title>
+            </Html>
+
             {select && 
                 <Html
                     as='div'

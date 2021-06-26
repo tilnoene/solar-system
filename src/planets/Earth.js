@@ -34,6 +34,18 @@ const Earth = ({ position, select, setSelect, night=false }) => {
                 />
             </Sphere>
 
+            <Html distanceFactor={10}>
+                <Title translateY='10vh'> 
+                    <Typewriter
+                        options={{
+                            strings: ['Banco de Dados', 'Terra'],
+                            autoStart: true,
+                            loop: true,
+                        }}
+                    />
+                </Title>
+            </Html>
+
             {select && 
                 <Html
                     as='div'

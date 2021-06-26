@@ -28,6 +28,18 @@ const Venus = ({ position, select, setSelect }) => {
                 />
             </Sphere>
 
+            <Html distanceFactor={10}>
+                <Title translateY='8.5vh' >
+                    <Typewriter
+                        options={{
+                            strings: ['Rails', 'Vênus'],
+                            autoStart: true,
+                            loop: true,
+                        }}
+                    />
+                </Title>
+            </Html>
+
             {select && 
                 <Html
                     as='div'

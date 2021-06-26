@@ -14,14 +14,15 @@ import Neptune from './planets/Neptune';
 import Pluto from './planets/Pluto';
 
 const gap = 3;
+const EPS = 1;
 
 const defaultCamera = {
     fov: 42,
     filmOffset: 0,
     position: {
-        x: 20,
+        x: 18,
         y: 1,
-        z: 20
+        z: 18
     },
     rotation: {
         x: 0,
@@ -97,6 +98,29 @@ const SolarSystem = () => {
         }
     }
 
+    const handleSelectJupiter = (selected) => {
+        setSelectJupiter(selected);
+
+        if (selectJupiter) {
+            setMyCamera(defaultCamera);
+        } else {
+            setMyCamera({
+                fov: 42,
+                filmOffset: 0,
+                position: {
+                    x: 1.6,
+                    y: 0.5,
+                    z: 1.6
+                },
+                rotation: {
+                    x: 0,
+                    y: 0.8,
+                    z: 0
+                }
+            });
+        }
+    }
+
     const handleSelectSaturn = (selected) => {
         setSelectSaturn(selected);
 
@@ -129,7 +153,7 @@ const SolarSystem = () => {
         state.camera.filmOffset = THREE.MathUtils.lerp(state.camera.filmOffset, myCamera.filmOffset, step);
         
         state.camera.lookAt(0, 0, 0);
-        
+
         state.camera.updateProjectionMatrix();
         
         //light.current.position.lerp(vec.set(tempcam.x, tempcam.y, tempcam.z), step)
@@ -137,16 +161,16 @@ const SolarSystem = () => {
 
     return (
         <group>
-            <Sun position={[3.8*gap, 0, -3.8*gap]} select={selectSun} setSelect={handleSelectSun} />
-            <Mercury position={[3*gap, 0, -3*gap]} select={selectMercury} setSelect={handleSelectMercury} />
-            <Venus position={[2.4*gap, 0, -2.4*gap]} select={selectVenus} setSelect={setSelectVenus} />
-            <Earth position={[1.8*gap, 0, -1.8*gap]} select={selectEarth} setSelect={handleSelectEarth} />
-            <Mars position={[1*gap, 0, -1*gap]} select={selectMars} setSelect={setSelectMars} />
-            <Jupiter position={[gap, 0, -gap]} select={selectJupiter} setSelect={setSelectJupiter} />
-            <Saturn position={[0, 0, 0]} select={selectSaturn} setSelect={handleSelectSaturn} />
-            <Uranus position={[-gap, 0, gap]} select={selectUranus} setSelect={setSelectUranus} />
-            <Neptune position={[-2.3*gap, 0, 2.3*gap]} select={selectNeptune} setSelect={setSelectNeptune} />
-            <Pluto position={[-3*gap, 0, 3*gap]} select={selectPluto} setSelect={setSelectPluto} />
+            <Sun position={[EPS + 3.6*gap, 0, -3.6*gap - EPS]} select={selectSun} setSelect={handleSelectSun} />
+            <Mercury position={[EPS + 2.8*gap, 0, -2.8*gap - EPS]} select={selectMercury} setSelect={handleSelectMercury} />
+            <Venus position={[EPS + 2.2*gap, 0, -2.2*gap - EPS]} select={selectVenus} setSelect={setSelectVenus} />
+            <Earth position={[EPS + 1.5*gap, 0, -1.5*gap - EPS]} select={selectEarth} setSelect={handleSelectEarth} />
+            <Mars position={[EPS + 0.8*gap, 0, -0.8*gap - EPS]} select={selectMars} setSelect={setSelectMars} />
+            <Jupiter position={[-0.1*gap + EPS , 0, 0.1*gap - EPS]} select={selectJupiter} setSelect={handleSelectJupiter} />
+            <Saturn position={[-1.3*gap + EPS, 0, 1.3*gap - EPS]} select={selectSaturn} setSelect={handleSelectSaturn} />
+            <Uranus position={[-2.5*gap + EPS, 0, 2.5*gap - EPS]} select={selectUranus} setSelect={setSelectUranus} />
+            <Neptune position={[-3.6*gap + EPS, 0, 3.6*gap - EPS]} select={selectNeptune} setSelect={setSelectNeptune} />
+            <Pluto position={[-4.4*gap + EPS, 0, 4.4*gap - EPS]} select={selectPluto} setSelect={setSelectPluto} />
         </group>
     );
 }

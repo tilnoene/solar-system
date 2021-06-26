@@ -22,28 +22,40 @@ const Mars = ({ position, select, setSelect }) => {
             position={position}
             onClick={(e) => setSelect(!select)}
         >
-            <Sphere args={[1, 200, 200]} scale={0.8}>
+            <Sphere args={[1, 200, 200]} scale={0.7}>
                 <meshStandardMaterial 
                     attach='material'
                     map={textureMars}
                 />
             </Sphere>
 
+            <Html distanceFactor={10}>
+                <Title translateY='9vh'>
+                    <Typewriter
+                        options={{
+                            strings: ['Ruby', 'Marte'],
+                            autoStart: true,
+                            loop: true,
+                        }}
+                    />
+                </Title>
+            </Html>
+
             {select && 
                 <Html
                     as='div'
-                    distanceFactor={12}
+                    distanceFactor={10}
                     style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginLeft: "55px",
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginLeft: '55px',
                     }}
                     >
                         <Title>
                             <Typewriter
                                 options={{
-                                    strings: ['Júpiter'],
+                                    strings: ['Marte'],
                                     autoStart: true,
                                     loop: true,
                                 }}

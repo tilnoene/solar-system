@@ -28,6 +28,18 @@ const Neptune = ({ position, select, setSelect }) => {
                 />
             </Sphere>
 
+            <Html distanceFactor={10}>
+                <Title translateY='14vh' >
+                    <Typewriter
+                        options={{
+                            strings: ['CSS', 'Netuno'],
+                            autoStart: true,
+                            loop: true,
+                        }}
+                    />
+                </Title>
+            </Html>
+
             {select && 
                 <Html
                     as='div'

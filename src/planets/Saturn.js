@@ -38,28 +38,41 @@ const Saturn = ({ position, select, setSelect }) => {
             <Ring scale='1.2' rotation={[1.8, 0, 0]} args={[1, 1.6, 200]} ref={refRing}>
                 <meshStandardMaterial map={textureSaturnRings} side={THREE.DoubleSide} />
             </Ring>
+            
+            <Html distanceFactor={10}>
+                <Title translateY='12vh' >
+                    <Typewriter
+                        options={{
+                            strings: ['JavaScript', 'Saturno'],
+                            autoStart: true,
+                            loop: true,
+                        }}
+                    />
+                </Title>
+            </Html>
 
             {select && 
-            <Html
-                as='div'
-                distanceFactor={12}
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginLeft: '55px',
-                }}
-                >
-                    <Title>
-                        <Typewriter
-                            options={{
-                                strings: ['Saturno'],
-                                autoStart: true,
-                                loop: true,
-                            }}
-                        />
-                    </Title>
-            </Html>}
+                <Html
+                    as='div'
+                    distanceFactor={12}
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginLeft: '55px',
+                    }}
+                    >
+                        <Title>
+                            <Typewriter
+                                options={{
+                                    strings: ['Saturno'],
+                                    autoStart: true,
+                                    loop: true,
+                                }}
+                            />
+                        </Title>
+                </Html>
+            }
         </mesh>
     );
 }

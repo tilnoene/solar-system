@@ -28,6 +28,18 @@ const Pluto = ({ position, select, setSelect }) => {
                 />
             </Sphere>
 
+            <Html distanceFactor={10}>
+                <Title translateY='7vh' >
+                    <Typewriter
+                        options={{
+                            strings: ['HTML', 'Plutão'],
+                            autoStart: true,
+                            loop: true,
+                        }}
+                    />
+                </Title>
+            </Html>
+
             {select && 
                 <Html
                     as='div'

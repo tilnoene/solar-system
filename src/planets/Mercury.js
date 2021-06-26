@@ -28,6 +28,18 @@ const Mercury = ({ position, select, setSelect }) => {
                 />
             </Sphere>
 
+            <Html distanceFactor={10}>
+                <Title translateY='6.5vh' >
+                    <Typewriter
+                        options={{
+                            strings: ['Scrum', 'Mercúrio'],
+                            autoStart: true,
+                            loop: true,
+                        }}
+                    />
+                </Title>
+            </Html>
+
             {select && 
                 <Html
                     as='div'

@@ -29,6 +29,18 @@ const Sun = ({ position, select, setSelect }) => {
                 />
             </Sphere>
 
+            <Html distanceFactor={10}>
+                <Title translateY='18vh' >
+                    <Typewriter
+                        options={{
+                            strings: ['Projeto Final', 'Sol'],
+                            autoStart: true,
+                            loop: true,
+                        }}
+                    />
+                </Title>
+            </Html>
+
             {select && 
                 <Html
                     as='div'

@@ -31,6 +31,18 @@ const Uranus = ({ position, select, setSelect }) => {
                 <meshStandardMaterial attach='material' color='#83a5eb' side={THREE.DoubleSide} />
             </Ring>
 
+            <Html distanceFactor={10}>
+                <Title translateY='17vh' >
+                    <Typewriter
+                        options={{
+                            strings: ['GIT', 'Urano'],
+                            autoStart: true,
+                            loop: true,
+                        }}
+                    />
+                </Title>
+            </Html>
+
             {select && 
             <Html
                 as='div'
