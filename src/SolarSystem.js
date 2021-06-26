@@ -146,7 +146,7 @@ const SolarSystem = () => {
 
     // camera
     const vec = new THREE.Vector3();
-    /* useFrame((state) => {
+    useFrame((state) => {
         const step = 0.1;
         state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, myCamera.fov, step);
         state.camera.position.lerp(vec.set(myCamera.position.x, myCamera.position.y, myCamera.position.z), step);
@@ -157,7 +157,7 @@ const SolarSystem = () => {
         state.camera.updateProjectionMatrix();
         
         //light.current.position.lerp(vec.set(tempcam.x, tempcam.y, tempcam.z), step)
-    }); */
+    });
 
     return (
         <group>
