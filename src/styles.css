@@ -10,8 +10,15 @@ body,
   margin: 0;
   padding: 0;
 }
-  
+
+canvas {
+  height: 100vh;
+}
+
 body {
   background: black;
+  background-color: #59196A;
+  background-image: linear-gradient(90deg, #261757 0%, #59196A 100%);
+
   color: white;
 }

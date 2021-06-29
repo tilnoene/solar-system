@@ -5,6 +5,7 @@ import { OrbitControls, Stars } from '@react-three/drei';
 
 import './styles.css';
 
+import Loader from './Loader';
 import SolarSystem from './SolarSystem';
 
 ReactDOM.render(
@@ -23,7 +24,7 @@ ReactDOM.render(
         <Stars radius={100} depth={50} count={7000} factor={4} saturation={0} fade />
         {/* <gridHelper /> */}
 
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loader />}>
             <SolarSystem />
         </Suspense>
     </Canvas>,
